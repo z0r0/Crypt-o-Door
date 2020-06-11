@@ -23,26 +23,25 @@ def insert_keys():
 	replace('./shell.php','./shell/priv.key','[PRIVATE-KEY]')
 	return
 	
-def setup_files():
-	current_directory=os.getcwd()
-	
-	local_dir=(current_directory + "/local")
-	shell_dir=(current_directory + "/shell")
+def setup_files(output_directory):
+	cwd = os.getcwd()
+	local_dir=(output_directory + "/local")
+	shell_dir=(output_directory + "/shell")
 	
 	if not os.path.exists(local_dir):
 		os.makedirs(local_dir)
 	if not os.path.exists(shell_dir):
 		os.makedirs(shell_dir)
 
-	if os.path.exists(current_directory + "CLI.py"):
+	if os.path.exists(output_directory + "CLI.py"):
 		try:
-			os.remove(current_directory + "CLI.py")
+			os.remove(output_directory + "CLI.py")
 		except:
 			print("Cannot remove CLI.py, Permissions Problem")
 			os.exit(-1)	
-	shutil.copyfile('./src/CLI.py', './CLI.py')
-	os.chmod('./CLI.py', 0o755)
-	shutil.copyfile('./src/shell.php', './shell.php')	
+	shutil.copyfile(cwd + '/src/CLI.py', output_directory+'/CLI.py')
+	os.chmod(output_directory+'/CLI.py', 0o755)
+	shutil.copyfile(cwd + '/src/shell.php', output_directory+'/shell.php')	
 
 def save_key(path, keydata, keytype):
 	with open(path, 'wb') as content_file:
@@ -54,18 +53,20 @@ def save_key(path, keydata, keytype):
 
 def generate_key():
 	
-	print("Setting up Files..")
-	setup_files()
+	output_directory = os.getcwd()+"/output"
+	os.mkdir(output_directory)
+	print("Setting up Files..") 
+	setup_files(output_directory)
 	
 	print("Generating CLI Keypair..")
 	key = RSA.generate(2048)
-	save_key('./local/priv.key', key, "private")
-	save_key('./shell/pub.key', key, "public")
+	save_key(output_directory+'/local/priv.key', key, "private")
+	save_key(output_directory+'/shell/pub.key', key, "public")
 
 	print("Generating Shell Keypair..")
 	key = RSA.generate(2048)
-	save_key('./shell/priv.key', key, "private")
-	save_key('./local/pub.key', key, "public")
+	save_key(output_directory+ '/shell/priv.key', key, "private")
+	save_key(output_directory+ '/local/pub.key', key, "public")
 	
 	print("Linking The Shells..")
 	insert_keys()
