@@ -5,4 +5,4 @@ install:
   - pip install -r requirements.txt
   - pip install -r requirements-test.txt
 script:
-  - bin/run_tests.sh
+  - sh bin/run_tests.sh
