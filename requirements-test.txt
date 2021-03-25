@@ -10,7 +10,7 @@ py==1.8.1
 pycryptodome==3.9.7
 pyparsing==2.4.7
 pytest==5.4.3
-PyYAML==5.3.1
+PyYAML==5.4
 requests==2.23.0
 shellescape==3.8.1
 six==1.15.0
