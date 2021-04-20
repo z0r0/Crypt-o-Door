@@ -6,7 +6,7 @@ more-itertools==8.3.0
 Naked==0.1.31
 packaging==20.4
 pluggy==0.13.1
-py==1.8.1
+py==1.10.0
 pycryptodome==3.9.7
 pyparsing==2.4.7
 pytest==5.4.3
