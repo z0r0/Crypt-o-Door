@@ -1,3 +1,5 @@
+# Archive Notice
+This tool is dead. It was a cool way to play around with PHP and backdoors being generated 10 years ago now (which is crazy to me). But I've moved on to different interests. If you're looking at this code, please don't consider this as anything other than an old interest. Happy Hacking! 
 # Crypt-o-Door v1.0 A "Secure" PHP Backdooring tool
 
 Copyright (C) 2012  Ian "z0r0" Abreu
